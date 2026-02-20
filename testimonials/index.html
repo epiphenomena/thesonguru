@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials | TheSONGuru</title>
+    <meta name="description" content="What artists say about their experience with TheSONGuru.">
+
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <a href="../"><img src="../hero.png" alt="Aryn Michelle - TheSONGuru" width="1920" height="1080"></a>
+        </div>
+    </header>
+
+    <main>
+        <section id="testimonials">
+            <div class="container container-narrow">
+                <h2>Testimonials</h2>
+                <a href="../" class="back-link">&larr; Back to Home</a>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "TheSONGuru provided the exact kind of feedback I needed to take my song from a rough draft to a competition-ready piece. Aryn's insights on prosody and structure were invaluable."
+                    </p>
+                    <p class="testimonial-author">&mdash; Sarah J., Songwriter</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "I've worked with many consultants, but the level of detail and care in the voice memo feedback from TheSONGuru is unmatched. Highly recommend for any songwriter looking to level up."
+                    </p>
+                    <p class="testimonial-author">&mdash; Marcus D., Recording Artist</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> TheSONGuru | Aryn Michelle</p>
+            <p>Enlightened Song Editing</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

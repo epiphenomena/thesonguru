@@ -1,0 +1,338 @@
+/* --- 1. Variables & Reset --- */
+:root {
+    /* Palette extracted from Hero Image */
+    --c-red: #D92027;        /* Shirt/Headphones */
+    --c-brown: #5D4037;      /* "TheSONGuru" text */
+    --c-black: #111111;      /* Waveforms */
+    --c-skin: #FADAC9;       /* Face/Accent */
+    --c-white: #ffffff;
+    --c-bg: #fdfbf9;         /* Warm off-white */
+    --c-bg-alt: #f4efe9;     /* Darker beige for sections */
+
+    /* Spacing & Layout */
+    --space-sm: 1rem;
+    --space-md: 2.5rem;
+    --space-lg: 5rem;
+    --max-width-text: 700px;
+    --max-width-site: 1100px;
+
+    /* Typography */
+    --font-head: 'Georgia', 'Times New Roman', serif; /* Matching logo vibe */
+    --font-body: system-ui, -apple-system, sans-serif;
+    --line-height: 1.6;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--c-bg);
+    color: var(--c-black);
+    line-height: var(--line-height);
+}
+
+/* --- 2. Typography --- */
+h1, h2, h3 {
+    font-family: var(--font-head);
+    color: var(--c-brown);
+    margin-bottom: var(--space-sm);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    text-align: center;
+    margin-bottom: var(--space-md);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Stylized underline for H2s mimicking waveform */
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--c-red);
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+a {
+    color: var(--c-red);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* --- 3. Layout Components --- */
+section {
+    padding: var(--space-lg) var(--space-sm);
+}
+
+section:nth-child(even) {
+    background-color: var(--c-bg-alt);
+}
+
+.container {
+    max-width: var(--max-width-site);
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.container-narrow {
+    max-width: var(--max-width-text);
+    margin: 0 auto;
+}
+
+/* Specific for samples page override */
+.samples-page .container-narrow {
+    max-width: 800px;
+}
+
+/* --- 4. Hero Section --- */
+.hero {
+    text-align: center;
+    padding: 0;
+    background: var(--c-white);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.hero img {
+    max-width: 100%;
+    height: auto;
+    max-height: 80vh; /* Ensure it fits on screen */
+    display: block;
+    margin: 0 auto;
+}
+
+/* --- 5. UI Elements: Cards & Shared Elements --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: var(--c-white);
+    border: 2px solid var(--c-black); /* Thick lines like the graphic */
+    border-radius: 12px;
+    padding: 2rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 0px var(--c-skin);
+}
+
+.card h3 {
+    color: var(--c-red);
+    font-size: 1.4rem;
+}
+
+.card-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.card-link {
+    margin-top: auto;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.back-link {
+    display: block;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+/* --- 6. Pricing Table (Simple) --- */
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px dashed var(--c-brown);
+}
+
+.price-row:last-child { border-bottom: none; }
+
+.price-name { font-weight: bold; font-size: 1.2rem; }
+.price-desc { display: block; font-weight: normal; font-size: 0.9rem; color: #666; margin-top: 0.2rem; }
+.price-cost { font-family: var(--font-head); font-size: 1.4rem; color: var(--c-red); }
+
+/* --- 7. Contact Form --- */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--c-brown);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--c-brown);
+}
+
+/* HTML5 Validation Styles */
+input:not(:placeholder-shown):invalid,
+textarea:not(:placeholder-shown):invalid {
+    border-color: var(--c-red);
+    box-shadow: 0 0 5px rgba(217, 32, 39, 0.2);
+}
+
+input:not(:placeholder-shown):valid,
+textarea:not(:placeholder-shown):valid {
+    border-color: #4CAF50;
+}
+
+button.btn-submit {
+    background-color: var(--c-red);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 300px;
+}
+
+button.btn-submit:hover {
+    background-color: oklch(from var(--c-red) calc(l + 0.2) c h);
+}
+
+/* --- 8. Page Specific Components --- */
+
+/* Testimonials */
+.testimonial-card {
+    background: var(--c-white);
+    border: 2px solid var(--c-black);
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.testimonial-text {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--c-brown);
+    margin-bottom: 1rem;
+}
+
+.testimonial-author {
+    font-weight: bold;
+    color: var(--c-red);
+    text-align: right;
+}
+
+/* Samples */
+.feedback-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.feedback-type {
+    padding: 1.5rem;
+    background: var(--c-white);
+    border: 2px solid var(--c-black);
+    border-radius: 8px;
+}
+
+.feedback-type h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--c-red);
+}
+
+.sample-media {
+    background: var(--c-white);
+    border: 2px solid var(--c-black);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.sample-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: block;
+    margin-top: 1.5rem;
+}
+
+/* --- 9. Footer --- */
+footer {
+    background-color: var(--c-black);
+    color: var(--c-bg);
+    text-align: center;
+    padding: 3rem 1rem;
+    font-size: 0.9rem;
+}
+
+footer p { color: #888; font-size: 0.9rem; margin: 0; }
+
+/* --- 10. Mobile Tweaks --- */
+@media (max-width: 600px) {
+    :root {
+        --space-lg: 3.5rem;
+    }
+    .price-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
