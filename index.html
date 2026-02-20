@@ -185,16 +185,57 @@
         // Simple progressive enhancement for the footer year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Optional: Client-side validation visual feedback
         const form = document.getElementById('contactForm');
+        const submitBtn = form.querySelector('.btn-submit');
+
         form.addEventListener('submit', function(e) {
-            // In a real scenario, you might add fetch() here to handle submission without reload
-            // For this static request, we let the form POST naturally
-            const email = document.getElementById('email').value;
-            if (!email.includes('@')) {
-                e.preventDefault();
-                alert('Please enter a valid email address.');
-            }
+            e.preventDefault();
+
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+
+            const formData = new FormData(form);
+
+            fetch('contact.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(async response => {
+                const message = await response.text();
+                
+                // Create formatted container
+                const messageContainer = document.createElement('div');
+                messageContainer.className = `form-message ${response.ok ? 'success' : 'error'}`;
+                
+                const title = response.ok ? 'Thank You!' : 'Oops!';
+                messageContainer.innerHTML = `<h3>${title}</h3><p>${message}</p>`;
+
+                if (!response.ok) {
+                   // If error, add a "Try Again" button to restore the form
+                   const retryBtn = document.createElement('button');
+                   retryBtn.type = 'button';
+                   retryBtn.textContent = 'Try Again';
+                   retryBtn.className = 'btn-submit';
+                   retryBtn.style.marginTop = '1rem';
+                   retryBtn.onclick = () => {
+                       messageContainer.replaceWith(form);
+                       submitBtn.disabled = false;
+                       submitBtn.textContent = originalBtnText;
+                   };
+                   messageContainer.appendChild(retryBtn);
+                }
+
+                // Replace form with message
+                form.replaceWith(messageContainer);
+            })
+            .catch(error => {
+                console.error('Submission error:', error);
+                alert('Something went wrong. Please try again later.');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+            });
         });
     </script>
 </body>

@@ -336,3 +336,36 @@ footer p { color: #888; font-size: 0.9rem; margin: 0; }
         gap: 0.5rem;
     }
 }
+
+/* --- 11. Form Feedback --- */
+.form-message {
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid var(--c-black);
+    text-align: center;
+    background: var(--c-white);
+    animation: fadeIn 0.4s ease-out;
+}
+
+.form-message.success {
+    border-color: #4CAF50;
+    color: #2E7D32;
+    box-shadow: 6px 6px 0px rgba(76, 175, 80, 0.2);
+}
+
+.form-message.error {
+    border-color: var(--c-red);
+    color: var(--c-red);
+    box-shadow: 6px 6px 0px rgba(217, 32, 39, 0.2);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+button.btn-submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
