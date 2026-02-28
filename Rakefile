@@ -5,5 +5,5 @@ end
 
 desc "Run development server"
 task :serve do
-    sh "php -S localhost:8001 -t ./public/"
+    sh "php -S localhost:8000 -t ./"
 end

@@ -261,19 +261,50 @@ button.btn-submit:hover {
     padding: 2.5rem;
     margin-bottom: 2rem;
     position: relative;
+    overflow: auto; /* Simple clearfix to contain floated image */
+}
+
+.testimonial-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px solid var(--c-red);
+    float: left;
+    margin-right: 2rem;
+    margin-bottom: 1rem;
 }
 
 .testimonial-text {
     font-style: italic;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--c-brown);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
 }
 
 .testimonial-author {
     font-weight: bold;
     color: var(--c-red);
     text-align: right;
+    font-size: 1.2rem;
+    display: block;
+    clear: both; /* Ensure author is below text and image */
+}
+
+/* For mobile: stack image and text */
+@media (max-width: 600px) {
+    .testimonial-image {
+        float: none;
+        display: block;
+        margin: 0 auto 1.5rem;
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+    }
+    .testimonial-author {
+        text-align: center;
+    }
 }
 
 /* Samples */
