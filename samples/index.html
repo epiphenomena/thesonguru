@@ -57,22 +57,18 @@
             </div>
         </section>
 
-        <section id="sample-submission">
+        <section id="sample-comparison">
             <div class="container container-narrow">
-                <h2>Sample Submission</h2>
-                <div class="sample-media">
-                    <p>This is what an initial submission looks like from an artist.</p>
-                    <img src="Sample%20Submission.jpg" alt="Sample Submission" class="sample-image">
-                </div>
-            </div>
-        </section>
-
-        <section id="written-feedback">
-            <div class="container container-narrow">
-                <h2>Written Feedback</h2>
-                <div class="sample-media">
-                    <p>Detailed analysis and line-by-line suggestions on the song's structure and overall emotional arc.</p>
-                    <img src="Written%20Feedback.jpg" alt="Written Feedback" class="sample-image">
+                <h2>Interactive Editing Sample</h2>
+                <p style="text-align: center;">Slide the bar to compare the original submission with the detailed written feedback provided.</p>
+                <div class="comparison-container">
+                    <!-- Original submission image (revealed by slider) -->
+                    <img src="Sample%20Submission.jpg" alt="Sample Submission" class="comparison-image image-before">
+                    <!-- Feedback image (always in background) -->
+                    <img src="Written%20Feedback.jpg" alt="Written Feedback" class="comparison-image image-after">
+                    
+                    <input type="range" min="0" max="100" value="50" class="comparison-slider" aria-label="Slide to compare original and feedback">
+                    <div class="slider-handle"></div>
                 </div>
             </div>
         </section>
@@ -87,6 +83,17 @@
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        const container = document.querySelector('.comparison-container');
+        const slider = document.querySelector('.comparison-slider');
+        const beforeImage = document.querySelector('.image-before');
+        const handle = document.querySelector('.slider-handle');
+
+        slider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            beforeImage.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
+            handle.style.left = `${val}%`;
+        });
     </script>
 </body>
 </html>
